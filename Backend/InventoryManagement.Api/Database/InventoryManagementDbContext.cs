@@ -1,3 +1,4 @@
+using InventoryManagement.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 //Creating a class called InventoryManagementDbContext that inherits from DbContext to interact with the database
