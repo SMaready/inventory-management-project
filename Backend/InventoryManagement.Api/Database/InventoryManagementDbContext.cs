@@ -11,7 +11,8 @@ public class InventoryManagementDbContext : DbContext
     }
 
     //DbSet represents a collection of entities of a specific type that can be queried from the database
-    //In this case, it represents a collection of InventoryItem entities
+    //In this case, it represents a collection of InventoryItem entities and InventoryLocation entities
     public DbSet<InventoryItem> InventoryItems { get; set; }
+    public DbSet<InventoryLocation> InventoryLocations { get; set; }
 
 }
