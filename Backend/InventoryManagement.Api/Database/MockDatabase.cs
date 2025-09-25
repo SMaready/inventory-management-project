@@ -6,7 +6,7 @@ public static class MockDataabase
     public static List<InventoryLocation> InventoryLocations { get; set; } = new List<InventoryLocation>
     {
         new InventoryLocation { Id = 1, Warehouse = "W1", Aisle = "A1", Shelf = "S1", Bin = "B1", CreatedBy = "system", CreatedOn = DateTime.UtcNow },
-        new InventoryLocation { Id = 1, Warehouse = "W1", Aisle = "A1", Shelf = "S1", Bin = "B1", CreatedBy = "system", CreatedOn = DateTime.UtcNow },
+        new InventoryLocation { Id = 2, Warehouse = "W1", Aisle = "A1", Shelf = "S1", Bin = "B1", CreatedBy = "system", CreatedOn = DateTime.UtcNow },
         new InventoryLocation { Id = 1, Warehouse = "W1", Aisle = "A1", Shelf = "S1", Bin = "B1", CreatedBy = "system", CreatedOn = DateTime.UtcNow },
         new InventoryLocation { Id = 1, Warehouse = "W1", Aisle = "A1", Shelf = "S1", Bin = "B1", CreatedBy = "system", CreatedOn = DateTime.UtcNow },
         new InventoryLocation { Id = 1, Warehouse = "W1", Aisle = "A1", Shelf = "S1", Bin = "B1", CreatedBy = "system", CreatedOn = DateTime.UtcNow }

@@ -5,11 +5,11 @@ import react from '@vitejs/plugin-react'
 export default {
   server: {
     proxy: {
-      "/weatherforecast": {
+      "/api/locations": {
         target: "http://localhost:5190",
         changeOrigin: true,
         secure: false
-      }
+      } 
     }
   }
 }

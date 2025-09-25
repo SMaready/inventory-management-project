@@ -10,13 +10,10 @@ export default function App() {
   //proxy server setting for this can be edited in vite.config.js file
   //Target can be changed
   useEffect(() => {
-    fetch("/weatherforecast") //Test enpoint
-      .then((r) => {
-        if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
-        return r.json();
-      })
-      .then((data) => setItems(data))
-      .catch((e) => setErr(e.message));
+    fetch("http://localhost:5190") //Test enpoint
+      .then(r => { if (!r.ok) throw new Error(`${r.status} ${r.statusText}`); return r.json(); })
+      .then(data => setItems(data))
+      .catch(e => setErr(e.message));
   }, []);
 
   return (
