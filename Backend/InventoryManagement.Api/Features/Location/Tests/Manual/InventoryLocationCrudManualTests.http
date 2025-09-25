@@ -1,0 +1,20 @@
+### GET All Locations
+GET http://localhost:5190/api/locations
+
+### GET Location by ID
+GET http://localhost:5190/api/locations/1
+
+### POST Create New Location
+POST http://localhost:5190/api/locations
+Content-Type: application/json
+
+{
+    "createdBy": "TestUser1",
+    "createdOn": "2025-10-01T12:00:00Z",
+    "warehouse": "W1",
+    "aisle": "A1",
+    "shelf": "S1",
+    "bin": "B1",
+    "type": 1,
+    "inventoryItems": []
+}
