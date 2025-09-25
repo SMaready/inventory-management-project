@@ -1,0 +1,115 @@
+.sidebar {
+  width: 220px;
+  min-width: 64px;
+  background: linear-gradient(180deg, #1a1a1a, #111);
+  color: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
+  box-sizing: border-box;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: width 200ms ease;
+  overflow: hidden;
+}
+
+.brand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: inline-grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 700;
+}
+
+.brand-text {
+  font-weight: 700;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.collapse-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.9);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* links */
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sidebar nav a {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 6px;
+}
+
+.sidebar nav a:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* icon + text control for collapse */
+.link-icon {
+  width: 28px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.95rem;
+}
+
+.link-text {
+  white-space: nowrap;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+/* collapsed state */
+.sidebar.is-collapsed {
+  width: 64px;
+}
+
+.sidebar.is-collapsed .brand-text,
+.sidebar.is-collapsed .link-text {
+  opacity: 0;
+  transform: translateX(-6px);
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  display: inline-block;
+}
+
+/* slightly adjust spacing when collapsed */
+.sidebar.is-collapsed .brand-left {
+  gap: 0.3rem;
+}
+
+.sidebar.is-collapsed .collapse-btn {
+  padding: 0.15rem 0.35rem;
+}

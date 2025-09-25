@@ -1,0 +1,28 @@
+:root {
+  --sidebar-width: 220px;
+  --gap: 1rem;
+}
+
+/* layout */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+/* when sidebar collapsed the sidebar itself shrinks via its own CSS,
+   the main area will automatically grow because of flex layout */
+.app-main {
+  flex: 1;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  color: inherit;
+  transition: margin-left 200ms ease;
+}
+
+.app-header {
+  margin-bottom: 1rem;
+}
+
+/* keep previous mobile rules intact if present */
+/* ...existing code... */
