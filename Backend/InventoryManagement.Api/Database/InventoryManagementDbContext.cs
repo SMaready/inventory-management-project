@@ -1,8 +1,12 @@
+using InventoryManagement.Api.Features.Location.Models;
 using InventoryManagement.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 //Creating a class called InventoryManagementDbContext that inherits from DbContext to interact with the database
 //DbContext is a part of Entity Framework Core, which is an Object-Relational Mapping framework for .NET applications
+
+namespace InventoryManagement.Api.Database;
+
 public class InventoryManagementDbContext : DbContext
 {
     public InventoryManagementDbContext(DbContextOptions<InventoryManagementDbContext> options)

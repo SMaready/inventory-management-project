@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using InventoryManagement.Api.Features.Location.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Api.Models

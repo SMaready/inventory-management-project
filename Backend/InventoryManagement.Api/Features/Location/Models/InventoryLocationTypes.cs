@@ -1,5 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
+
+namespace InventoryManagement.Api.Features.Location.Models;
+
 public enum InventoryLocationTypes
 {
     Stockroom = 1,
