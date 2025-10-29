@@ -3,6 +3,8 @@
 // We use 'record' to define an immutable data structure that holds the properties needed to create an inventory item
 using InventoryManagement.Api.Features.Shared.Interfaces;
 
+namespace InventoryManagement.Api.Features.Inventory.Commands;
+
 public record CreateInventoryItemCommand : ICommand
 {
     public required string Sku { get; set; }

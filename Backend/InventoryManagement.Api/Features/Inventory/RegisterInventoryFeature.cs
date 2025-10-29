@@ -1,11 +1,14 @@
 using InventoryManagement.Api.Features.Inventory.Endpoints;
+using InventoryManagement.Api.Features.Inventory.Handlers;
+using InventoryManagement.Api.Features.Inventory.Validators;
 
 public static class RegisterInventoryFeature
 {
     // Extension method to register inventory-related services
     public static IServiceCollection AddInventoryFeature(this IServiceCollection services)
     {
-        //Once we have commands and handlers, we can register them here just like we do for Locations
+        services.AddTransient<CreateInventoryItemCommandValidator>();
+        services.AddTransient<CreateInventoryItemCommandHandler>();
         return services;
     }
 
@@ -14,6 +17,6 @@ public static class RegisterInventoryFeature
     public static void UseInventoryFeature(this IEndpointRouteBuilder app)
     {
         app.MapInventoryItemQueryEndpoints();
-        //app.MapInventoryItemCommandEndpoints(); // Uncomment when command endpoints are implemented
+        app.MapInventoryItemCommandEndpoints();
     }
 }
