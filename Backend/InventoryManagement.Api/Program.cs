@@ -13,6 +13,8 @@ builder.Services.AddDbContext<InventoryManagementDbContext>(options =>
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddLocationFeature();
+builder.Services.AddInventoryFeature();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,6 +26,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseLocationFeature();
+app.UseInventoryFeature();
 
 var summaries = new[]
 {
