@@ -1,7 +1,12 @@
 import React from "react";
 import "./Sidebar.css";
 
-export default function Sidebar({ collapsed, setCollapsed }) {
+export default function Sidebar({
+  collapsed,
+  setCollapsed,
+  selectedPage,
+  onSelectPage,
+}) {
   return (
     <aside className={`sidebar ${collapsed ? "is-collapsed" : ""}`}>
       <div className="brand">
@@ -21,29 +26,29 @@ export default function Sidebar({ collapsed, setCollapsed }) {
 
       <nav>
         <ul>
-          <li>
-            <a href="#">
+          <li className={selectedPage === "dashboard" ? "active" : ""}>
+            <button type="button" onClick={() => onSelectPage("dashboard")}>
               <span className="link-icon">🏠</span>
               <span className="link-text">Dashboard</span>
-            </a>
+            </button>
           </li>
-          <li>
-            <a href="#">
+          <li className={selectedPage === "items" ? "active" : ""}>
+            <button type="button" onClick={() => onSelectPage("items")}>
               <span className="link-icon">📦</span>
               <span className="link-text">Items</span>
-            </a>
+            </button>
           </li>
-          <li>
-            <a href="#">
+          <li className={selectedPage === "locations" ? "active" : ""}>
+            <button type="button" onClick={() => onSelectPage("locations")}>
               <span className="link-icon">📍</span>
               <span className="link-text">Locations</span>
-            </a>
+            </button>
           </li>
-          <li>
-            <a href="#">
+          <li className={selectedPage === "reports" ? "active" : ""}>
+            <button type="button" onClick={() => onSelectPage("reports")}>
               <span className="link-icon">📊</span>
               <span className="link-text">Reports</span>
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
