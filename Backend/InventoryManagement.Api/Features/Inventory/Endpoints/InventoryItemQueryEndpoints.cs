@@ -13,7 +13,7 @@ public static class InventoryItemQueryEndpoints
 
         group.MapGet("/", () =>
         {
-            var results = MockDataabase.inventoryItems;
+            var results = MockDatabase.inventoryItems;
             return Results.Ok(results);
         })
         .WithName("GetInventoryItems")
@@ -21,7 +21,7 @@ public static class InventoryItemQueryEndpoints
 
         group.MapGet("/{id:int}", (int id) =>
         {
-            var result = MockDataabase.inventoryItems.FirstOrDefault(item => item.Id == id);
+            var result = MockDatabase.inventoryItems.FirstOrDefault(item => item.Id == id);
             return result is not null ? Results.Ok(result) : Results.NotFound();
         })
         .WithName("GetInventoryItemById")

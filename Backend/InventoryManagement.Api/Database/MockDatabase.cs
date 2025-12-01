@@ -1,7 +1,7 @@
 using InventoryManagement.Api.Features.Location.Models;
 using InventoryManagement.Api.Models;
 
-public static class MockDataabase
+public static class MockDatabase
 {
     public static List<InventoryLocation> InventoryLocations { get; set; } = new List<InventoryLocation>
     {

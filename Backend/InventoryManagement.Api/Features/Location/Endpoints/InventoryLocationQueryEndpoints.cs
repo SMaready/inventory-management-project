@@ -23,7 +23,7 @@ public static class InventoryLocationQueryEndpoints
         // Define a GET endpoint for retrieving all inventory locations
         group.MapGet("/", () =>
         {
-            var results = MockDataabase.InventoryLocations;
+            var results = MockDatabase.InventoryLocations;
             return Results.Ok(results);
         })
         .WithName("GetInventoryLocations")
@@ -32,7 +32,7 @@ public static class InventoryLocationQueryEndpoints
         // Define a GET endpoint for retrieving a specific inventory location by its ID
         group.MapGet("/{id:int}", (int id) =>
         {
-            var result = MockDataabase.InventoryLocations.FirstOrDefault(loc => loc.Id == id);
+            var result = MockDatabase.InventoryLocations.FirstOrDefault(loc => loc.Id == id);
             return result is not null ? Results.Ok(result) : Results.NotFound();
         })
         .WithName("GetInventoryLocationById")

@@ -43,7 +43,7 @@ public static class InventoryLocationCommandEndpoints
                 CreatedBy = "System"
             };
 
-            MockDataabase.InventoryLocations.Add(newLocation);
+            MockDatabase.InventoryLocations.Add(newLocation);
             return Results.Created($"/api/location/{newLocation.Id}", newLocation);
         })
         .WithName("AddInventoryLocation")
@@ -52,7 +52,7 @@ public static class InventoryLocationCommandEndpoints
         // Define a PUT endpoint for updating an existing inventory location
         group.MapPut("/{id:int}", (int id, UpdateInventoryLocationCommand command) =>
         {
-            var existingLocation = MockDataabase.InventoryLocations.FirstOrDefault(loc => loc.Id == id);
+            var existingLocation = MockDatabase.InventoryLocations.FirstOrDefault(loc => loc.Id == id);
             if (existingLocation is null)
             {
                 return Results.NotFound();
@@ -72,13 +72,13 @@ public static class InventoryLocationCommandEndpoints
         // Define a DELETE endpoint for deleting an existing inventory location
         group.MapDelete("/{id:int}", (int id) =>
         {
-            var existingLocation = MockDataabase.InventoryLocations.FirstOrDefault(loc => loc.Id == id);
+            var existingLocation = MockDatabase.InventoryLocations.FirstOrDefault(loc => loc.Id == id);
             if (existingLocation is null)
             {
                 return Results.NotFound();
             }
 
-            MockDataabase.InventoryLocations.Remove(existingLocation);
+            MockDatabase.InventoryLocations.Remove(existingLocation);
             return Results.NoContent();
         })
         .WithName("DeleteInventoryLocation")
