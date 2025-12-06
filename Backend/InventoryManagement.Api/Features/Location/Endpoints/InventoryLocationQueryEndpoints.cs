@@ -21,18 +21,18 @@ public static class InventoryLocationQueryEndpoints
 
 
         // Define a GET endpoint for retrieving all inventory locations
-        group.MapGet("/", () =>
+        group.MapGet("/", (InventoryManagementDbContext db) =>
         {
-            var results = MockDatabase.InventoryLocations;
+            var results = db.InventoryLocations.ToList();
             return Results.Ok(results);
         })
         .WithName("GetInventoryLocations")
         .WithTags("InventoryLocations");
 
         // Define a GET endpoint for retrieving a specific inventory location by its ID
-        group.MapGet("/{id:int}", (int id) =>
+        group.MapGet("/{id:int}", (int id, InventoryManagementDbContext db) =>
         {
-            var result = MockDatabase.InventoryLocations.FirstOrDefault(loc => loc.Id == id);
+            var result = db.InventoryLocations.FirstOrDefault(loc => loc.Id == id);
             return result is not null ? Results.Ok(result) : Results.NotFound();
         })
         .WithName("GetInventoryLocationById")

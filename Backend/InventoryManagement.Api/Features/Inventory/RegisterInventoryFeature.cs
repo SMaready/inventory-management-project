@@ -7,8 +7,14 @@ public static class RegisterInventoryFeature
     // Extension method to register inventory-related services
     public static IServiceCollection AddInventoryFeature(this IServiceCollection services)
     {
-        services.AddTransient<CreateInventoryItemCommandValidator>();
-        services.AddTransient<CreateInventoryItemCommandHandler>();
+        services.AddScoped<CreateInventoryItemCommandValidator>();
+        services.AddScoped<UpdateInventoryItemCommandValidator>();
+        services.AddScoped<DeleteInventoryItemCommandValidator>();
+
+        services.AddScoped<CreateInventoryItemCommandHandler>();
+        services.AddScoped<UpdateInventoryItemCommandHandler>();
+        services.AddScoped<DeleteInventoryItemCommandHandler>();
+
         return services;
     }
 

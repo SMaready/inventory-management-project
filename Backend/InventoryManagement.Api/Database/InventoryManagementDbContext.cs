@@ -14,6 +14,18 @@ public class InventoryManagementDbContext : DbContext
     {
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<InventoryLocation>().HasData(MockDatabase.InventoryLocations);
+        modelBuilder.Entity<InventoryItem>().HasData(MockDatabase.InventoryItems);
+    }
+
     //DbSet represents a collection of entities of a specific type that can be queried from the database
     //In this case, it represents a collection of InventoryItem entities and InventoryLocation entities
     public DbSet<InventoryItem> InventoryItems { get; set; }
