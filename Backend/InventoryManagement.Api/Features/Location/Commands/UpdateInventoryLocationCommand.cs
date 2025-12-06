@@ -6,6 +6,7 @@ namespace InventoryManagement.Api.Features.Location.Commands;
 
 public class UpdateInventoryLocationCommand : ICommand
 {
+    public int Id { get; set; }
     public required string Warehouse { get; set; }
     public required string Aisle { get; set; }
     public required string Shelf { get; set; }
