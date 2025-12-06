@@ -1,4 +1,6 @@
 using InventoryManagement.Api.Database;
+using InventoryManagement.Api.Features.Location.Models;
+using InventoryManagement.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<InventoryManagementDbContext>(options =>
 {
-    options.UseSqlite(builder.Configuration.GetConnectionString("InventoryManagementDatabase"));
+    //options.UseSqlite(builder.Configuration.GetConnectionString("InventoryManagementDatabase"));
+    options.UseInMemoryDatabase("InventoryManagementInMemoryDatabase");
 });
 
 builder.Services.AddHttpContextAccessor();
@@ -16,6 +19,21 @@ builder.Services.AddLocationFeature();
 builder.Services.AddInventoryFeature();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<InventoryManagementDbContext>();
+        context.Database.EnsureCreated();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -28,29 +46,4 @@ app.UseHttpsRedirection();
 app.UseLocationFeature();
 app.UseInventoryFeature();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
-
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
