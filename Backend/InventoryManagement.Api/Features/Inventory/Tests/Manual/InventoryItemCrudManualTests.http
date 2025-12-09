@@ -2,20 +2,20 @@
 ### Seed Database
 GET http://localhost:5190/api/inventory/seed
 
-### GET All Locations
+### GET All Items
 GET http://localhost:5190/api/inventory
 
-### GET Location by ID
+### GET Item by ID
 GET http://localhost:5190/api/inventory/1
 
-### POST Create New Location
+### POST Create New Item
 POST http://localhost:5190/api/inventory
 Content-Type: application/json
 
 {
     "sku": "Sku1",
-    "name": "Item 1",
-    "description": "Desc1",
+    "name": "Test Item 1",
+    "description": "Test Desc1",
     "onHandQuantity": 5,
     "status": 1,
     "locationId": 1
