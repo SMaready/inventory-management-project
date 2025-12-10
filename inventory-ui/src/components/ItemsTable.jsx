@@ -7,12 +7,16 @@ function fmtDate(iso) {
 }
 
 const statusLabel = (s) => {
-  
   if (s === 0 || s === "New") return "New";
   return String(s ?? "-");
 };
 
-export default function ItemsTable({ rows = [], locations = [] }) {
+export default function ItemsTable({
+  rows = [],
+  locations = [],
+  onEditItem,
+  onDeleteItem,
+}) {
   const columns = [
     { key: "sku", label: "SKU" },
     { key: "name", label: "Name" },
@@ -24,6 +28,7 @@ export default function ItemsTable({ rows = [], locations = [] }) {
     { key: "id", label: "ID" },
     { key: "createdOn", label: "Created" },
     { key: "createdBy", label: "Created By" },
+    { key: "actions", label: "Actions" },
   ];
 
   const locationsById = Object.fromEntries(
@@ -62,6 +67,7 @@ export default function ItemsTable({ rows = [], locations = [] }) {
             ))}
           </tr>
         </thead>
+
         <tbody>
           {rows.length === 0 ? (
             <tr>
@@ -84,30 +90,57 @@ export default function ItemsTable({ rows = [], locations = [] }) {
                 : "-";
 
               return (
-                <tr
-                  key={r.id ?? i}
-                  style={{ borderTop: "1px solid #262626" }}
-                >
-                  <td style={{ padding: "10px 14px" }}>{r.sku ?? "-"}</td>
-                  <td style={{ padding: "10px 14px" }}>{r.name ?? "-"}</td>
+                <tr key={r.id ?? i} style={{ borderTop: "1px solid #262626" }}>
+                  <td style={{ padding: "10px 14px" }}>{r.sku}</td>
+                  <td style={{ padding: "10px 14px" }}>{r.name}</td>
                   <td style={{ padding: "10px 14px" }}>
                     {statusLabel(r.status)}
                   </td>
-                  <td style={{ padding: "10px 14px" }}>
-                    {r.onHandQuantity ?? 0}
-                  </td>
-                  <td style={{ padding: "10px 14px" }}>
-                    {r.reservedQuantity ?? 0}
-                  </td>
+                  <td style={{ padding: "10px 14px" }}>{r.onHandQuantity}</td>
+                  <td style={{ padding: "10px 14px" }}>{r.reservedQuantity}</td>
                   <td style={{ padding: "10px 14px" }}>
                     {r.damagedQuantity ?? 0}
                   </td>
                   <td style={{ padding: "10px 14px" }}>{locLabel}</td>
-                  <td style={{ padding: "10px 14px" }}>{r.id ?? "-"}</td>
+                  <td style={{ padding: "10px 14px" }}>{r.id}</td>
                   <td style={{ padding: "10px 14px" }}>
                     {fmtDate(r.createdOn)}
                   </td>
-                  <td style={{ padding: "10px 14px" }}>{r.createdBy ?? "-"}</td>
+                  <td style={{ padding: "10px 14px" }}>{r.createdBy}</td>
+
+                  {/* ACTIONS */}
+                  <td style={{ padding: "10px 14px", whiteSpace: "nowrap" }}>
+                    <button
+                      style={{
+                        padding: "6px 10px",
+                        marginRight: "6px",
+                        background: "#333",
+                        color: "#fff",
+                        border: "1px solid #555",
+                        borderRadius: 6,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => onEditItem && onEditItem(r.id)}
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      style={{
+                        padding: "6px 10px",
+                        background: "#7a1f1f",
+                        color: "#fff",
+                        border: "1px solid #aa3a3a",
+                        borderRadius: 6,
+                        cursor: "pointer",
+                      }}
+                      onClick={() =>
+                        onDeleteItem && onDeleteItem(r.sku, r.name)
+                      }
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })
